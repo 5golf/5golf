@@ -8,8 +8,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {},
-    "android": {},
+    "ios": {
+      "bundleIdentifier": "com.golf.golf"
+    },
+    "android": {
+      "package": "com.golf.golf"
+    },
     "web": {}
   }
 }
