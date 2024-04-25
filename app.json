@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "5golf",
+    "slug": "5golf",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {},
+    "android": {},
+    "web": {}
+  }
+}
