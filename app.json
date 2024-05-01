@@ -4,16 +4,37 @@
     "slug": "5golf",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.golf.golf"
+      "bundleIdentifier": "com.fiveMinutesGolf.fiveMinutesGolf",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["kakaoplus", "kakaotalk"]
+      }
     },
     "android": {
-      "package": "com.golf.golf"
+      "package": "com.fiveMinutesGolf.fiveMinutesGolf",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "versionCode": 1
     },
-    "web": {}
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "63176cbf-a708-4b82-ae43-1340e45c7fcf"
+      }
+    }
   }
 }
