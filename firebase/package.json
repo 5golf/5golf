@@ -1,0 +1,13 @@
+{
+  "name": "@5golf/firebase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "package-link": "yalc publish",
+    "package-update": "yalc push"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.1.1"
+  }
+}

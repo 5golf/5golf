@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@5golf/firebase": {
+      "signature": "a95145ca0953c7b6701a601de5c97f2e",
+      "file": true
+    }
+  }
+}
