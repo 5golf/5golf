@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.fiveMinutesGolf.fiveMinutesGolf",
       "infoPlist": {
@@ -22,6 +20,7 @@
     },
     "android": {
       "package": "com.fiveMinutesGolf.fiveMinutesGolf",
+      "googleServicesFile": "../firebase/credentials/google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
