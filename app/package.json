@@ -16,6 +16,8 @@
   "dependencies": {
     "@5golf/firebase": "file:.yalc/@5golf/firebase",
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-firebase/app": "^18.8.0",
+    "@react-native-firebase/messaging": "^18.8.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",

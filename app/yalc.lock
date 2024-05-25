@@ -2,8 +2,9 @@
   "version": "v1",
   "packages": {
     "@5golf/firebase": {
-      "signature": "a95145ca0953c7b6701a601de5c97f2e",
-      "file": true
+      "signature": "adb83b7b395a97753c6589f870483198",
+      "file": true,
+      "replaced": "file:../firebase"
     }
   }
 }
