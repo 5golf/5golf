@@ -1,5 +1,6 @@
 import messaging from '@react-native-firebase/messaging';
 import { Platform, PermissionsAndroid } from 'react-native';
+import PushNotification, { Importance } from 'react-native-push-notification';
 
 class FirebaseMessage {
   messaging;
@@ -33,12 +34,31 @@ class FirebaseMessage {
       const { title, body } = notification;
       const result = { title, body };
       if (data.json) result.data = JSON.parse(data.json);
+      this.showForegroundNotification(result);
       callback(result);
     });
   }
 
   onBackgroundMessage(callback) {
     this.messaging.setBackgroundMessageHandler((message) => callback(message));
+  }
+
+  showForegroundNotification(message) {
+    const { title, body } = message;
+    PushNotification.createChannel({
+      channelId: '5golf',
+      channelName: '5golf',
+      importance: Importance.HIGH,
+    });
+
+    PushNotification.localNotification({
+      channelId: '5golf',
+      title,
+      message: body,
+      vibrate: true,
+      vibration: 300,
+      priority: 'high',
+    });
   }
 }
 
