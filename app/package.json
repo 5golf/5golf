@@ -14,7 +14,7 @@
     "ios": "expo run:ios"
   },
   "dependencies": {
-    "@5golf/firebase": "file:.yalc/@5golf/firebase",
+    "@5golf/firebase": "file:../firebase",
     "@expo/vector-icons": "^14.0.2",
     "@react-native-firebase/app": "^18.8.0",
     "@react-native-firebase/messaging": "^18.8.0",
