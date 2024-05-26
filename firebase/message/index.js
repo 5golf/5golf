@@ -25,22 +25,26 @@ class FirebaseMessage {
   }
 
   async getPushToken() {
-    await this.messaging.requestPermission();
-    return this.messaging.getToken();
+    return await this.messaging.getToken();
   }
 
   onForegroundMessage(callback) {
     return this.messaging.onMessage(({ notification, data }) => {
       const { title, body } = notification;
       const result = { title, body };
-      if (data.json) result.data = JSON.parse(data.json);
       this.showForegroundNotification(result);
       callback(result);
     });
   }
 
   onBackgroundMessage(callback) {
-    this.messaging.setBackgroundMessageHandler((message) => callback(message));
+    this.messaging.setBackgroundMessageHandler(({ notification }) => {
+      const { title, body } = notification;
+      const result = { title, body };
+      this.showForegroundNotification(result);
+      callback(result);
+      return Promise.resolve(true);
+    });
   }
 
   showForegroundNotification(message) {
