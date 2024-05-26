@@ -11,11 +11,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.fiveMinutesGolf.fiveMinutesGolf",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["kakaoplus", "kakaotalk"]
+        "LSApplicationQueriesSchemes": [
+          "kakaoplus",
+          "kakaotalk"
+        ]
       }
     },
     "android": {
@@ -25,7 +30,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 2
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"
