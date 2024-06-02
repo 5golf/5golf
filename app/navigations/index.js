@@ -5,11 +5,7 @@ export default function Navigations() {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator initialRouteName={'Main'}>
-      <Stack.Screen
-        name="Main"
-        component={Main}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

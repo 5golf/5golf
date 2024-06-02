@@ -1,11 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { HOME_URL, MYPAGE_URL, CART_URL, BOOKING_URL } from '../../constants';
-import WebView from './Webview';
+import { HOME_URL, MYPAGE_URL, CART_URL, BOOKING_URL, YOUTUBE_URL } from '../../constants';
+import Webview from './webview';
 
 export default function Main() {
   const BottomTab = createBottomTabNavigator();
-  const bottomTabList = ['Mypage', 'Home', 'Cart', 'Booking'];
+  const bottomTabList = ['Mypage', 'Home', 'Cart', 'Booking', 'Youtube'];
   const getTabParams = (tabName) => {
     // TODO: tab name에 맞게 icon 지정
     switch (tabName) {
@@ -15,6 +15,8 @@ export default function Main() {
         return { icon: 'cart', routeUrl: CART_URL };
       case 'Booking':
         return { icon: 'book', routeUrl: BOOKING_URL };
+      case 'Youtube':
+        return { icon: 'heart', routeUrl: YOUTUBE_URL };
       default:
         return { icon: 'home', routeUrl: HOME_URL };
     }
@@ -26,17 +28,17 @@ export default function Main() {
         <BottomTab.Screen
           key={tabName}
           name={tabName}
-          component={WebView}
+          component={Webview}
           options={{
             headerShown: false,
-            tabBarIcon: () => {
-              const { icon } = getTabParams(tabName);
+            tabBarIcon: ({ focused }) => {
+              const { icon: _icon } = getTabParams(tabName);
+              const icon = focused ? _icon : `${_icon}-outline`;
               return <MaterialCommunityIcons name={icon} size={30} />;
             },
           }}
           listeners={({ navigation }) => ({
             tabPress: () => {
-              // TODO: tab에 맞게 routeUrl 지정
               const { routeUrl } = getTabParams(tabName);
               navigation.setParams({ routeUrl });
             },
