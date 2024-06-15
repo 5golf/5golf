@@ -3,20 +3,20 @@ import { SafeAreaView, StyleSheet, Dimensions, Linking, Platform, BackHandler } 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import RnWebview from 'react-native-webview';
 import SendIntentAndroid from 'react-native-send-intent';
-import { WEBVIEW_URL } from '../../../constants';
+import { useNavigation } from '@react-navigation/native';
+import Loading from '../../../components/loading';
 
 export default function WebView(props) {
-  const { route, navigation } = props;
-  const { routeUrl } = route.params ?? {};
-
-  const source = { uri: routeUrl ? routeUrl : WEBVIEW_URL };
+  const { routeUrl, onChange } = props;
+  const navigation = useNavigation();
   const userAgent =
     'Mozilla/5.0 (Linux; Android 10; Android SDK built for x86 Build/LMY48X) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.117 Mobile Safari/608.2.11';
+  const source = { uri: routeUrl };
 
   const webviewRef = useRef(null);
   const [navState, setNavState] = useState(null);
 
-  const handleDetectChangeUrl = (event) => {
+  const handleShouldStartLoadWithRequest = (event) => {
     const { url } = event;
     if (url.includes('pf.kakao')) {
       if (Platform.OS === 'android') {
@@ -26,8 +26,13 @@ export default function WebView(props) {
       }
       return false;
     }
-
     return true;
+  };
+
+  const handleDetectChangeUrl = (e) => {
+    const { url: currentUrl } = e;
+    setNavState(e);
+    onChange(currentUrl);
   };
 
   const handleGoBack = (isCanGoBack) => {
@@ -63,10 +68,10 @@ export default function WebView(props) {
         source={source}
         userAgent={userAgent}
         style={styles.webview}
-        onShouldStartLoadWithRequest={handleDetectChangeUrl}
-        onNavigationStateChange={(e) => {
-          setNavState(e);
-        }}
+        onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
+        onNavigationStateChange={handleDetectChangeUrl}
+        startInLoadingState={true}
+        renderLoading={Loading}
       />
     </SafeAreaView>
   );

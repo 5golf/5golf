@@ -2,11 +2,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Webview from './webview';
 
 export default function WebviewConatiner(props) {
-  const { routeUrl } = props.route.params ?? {};
+  const { routeUrl, onChange } = props;
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator>
-      <Stack.Screen options={{ title: '' }} name="Webview" component={Webview} initialParams={{ routeUrl }} />
+      <Stack.Screen
+        options={{ title: '' }}
+        name="Webview"
+        children={() => <Webview routeUrl={routeUrl} onChange={onChange} />}
+      />
     </Stack.Navigator>
   );
 }
