@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, Dimensions, Linking, Platform, BackHandler } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { SafeAreaView, StyleSheet, Dimensions, Linking, Platform, BackHandler, ActivityIndicator } from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import RnWebview from 'react-native-webview';
 import SendIntentAndroid from 'react-native-send-intent';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -46,7 +46,8 @@ export default function Webview(props) {
   };
 
   useEffect(() => {
-    const isCanGoBack = navState?.canGoBack;
+    const isCanGoBack = navState?.canGoBack ?? false;
+
     navigation.setOptions({
       headerShown: isCanGoBack,
       headerLeft: () => {
@@ -61,6 +62,8 @@ export default function Webview(props) {
       BackHandler.removeEventListener('hardwareBackPress', handleGoBack);
     };
   }, [navState?.canGoBack]);
+
+  useFocusEffect(useCallback(() => navigation.setOptions({ headerShown: false }), []));
 
   return (
     <SafeAreaView style={styles.container}>
