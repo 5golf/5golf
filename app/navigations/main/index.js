@@ -8,9 +8,13 @@ import Webview from './webview';
 export default function Main(props) {
   const BottomTab = createBottomTabNavigator();
   const navigation = useNavigation();
+
   const [currentUrl, setCurrentUrl] = useState(HOME_URL);
+  const [webviewKey, setWebviewKey] = useState({});
 
   const bottomTabList = ['Mypage', 'Home', 'Cart', 'Booking', 'Youtube'];
+  const bottomTabUrlList = [HOME_URL, MYPAGE_URL, CART_URL, BOOKING_URL, YOUTUBE_URL];
+
   const getTabParams = (tabName) => {
     // TODO: tab name에 맞게 icon 지정
     switch (tabName) {
@@ -32,8 +36,10 @@ export default function Main(props) {
     const isDifferentYoutubeUrl = currentUrl !== routeUrl;
     const isSameOriginUrl = currentUrl.includes(routeUrl);
     const isNestedUrl = currentUrl.length > routeUrl.length;
+
     if (isDifferentYoutubeUrl || (isSameOriginUrl && isNestedUrl)) {
-      navigation.reset({ routes: [{ name: tabName }] });
+      setWebviewKey({ ...webviewKey, [tabName]: `${tabName}${Date.now()}` });
+      setCurrentUrl(routeUrl);
     } else {
       setCurrentUrl(routeUrl);
     }
@@ -52,7 +58,7 @@ export default function Main(props) {
             name={tabName}
             children={() => {
               const { routeUrl } = getTabParams(tabName);
-              return <Webview routeUrl={routeUrl} onChange={setCurrentUrl} />;
+              return <Webview webviewKey={webviewKey[tabName]} routeUrl={routeUrl} onChange={setCurrentUrl} />;
             }}
             options={{
               headerShown: false,
