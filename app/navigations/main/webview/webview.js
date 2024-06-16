@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { SafeAreaView, StyleSheet, Dimensions, Linking, Platform, BackHandler, ActivityIndicator } from 'react-native';
+import { SafeAreaView, StyleSheet, Dimensions, Linking, Platform, BackHandler } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import RnWebview from 'react-native-webview';
 import SendIntentAndroid from 'react-native-send-intent';
