@@ -1,9 +1,11 @@
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 export default function Loading() {
-  <View style={styles.container}>
-    <ActivityIndicator size="large" color="black" />
-  </View>;
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" color="gray" />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
